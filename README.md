@@ -1,4 +1,4 @@
-# CSC120-A6: Use What Your Parent (Class) Gave You
+# CSC120-A7: Use What Your Parent (Class) Gave You
 
 ## Outline
 In this assignment (Part I of a two-week assignment), we'll explore how to use [**Inheritance**](https://en.wikipedia.org/wiki/Inheritance_(object-oriented_programming)) to write _parsimonious_ programs. 
@@ -137,8 +137,7 @@ private int nCups; // The number of cups remaining in inventory
 ```
 public void sellCoffee(int size, int nSugarPackets, int nCreams);
 ```
-Each time this method is called, the inventory should decrease in each category according to the given parameters, e.g. calling `myCafe.sellCoffee(12, 2, 3);`
-should decrease the `myCafe` object's `nCoffeeOunces` by 12, `nSugarPackets` by 2, and `nCreams` by 3 (and of course, `nCups` by 1).
+Each time this method is called, the inventory should decrease in each category according to the given parameters, e.g. calling `myCafe.sellCoffee(12, 2, 3);`should decrease the `myCafe` object's `nCoffeeOunces` by 12, `nSugarPackets` by 2, and `nCreams` by 3 (and of course, `nCups` by 1).
 
 ---
 3. And of course, a `Cafe` can't sell what it doesn't have in stock, so let's also write a method to restock when necessary:
