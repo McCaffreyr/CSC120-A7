@@ -2,7 +2,6 @@
 
 /* This is a stub for the House class */
 import java.util.ArrayList;
-import java.util.NoSuchElementException;
 
 public class House extends Building{
 
