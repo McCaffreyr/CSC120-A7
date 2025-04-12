@@ -1,3 +1,6 @@
+//overrode constructor and sellCoffee
+
+
 /* This is a stub for the Cafe class */
 
 public class Cafe extends Building{
@@ -6,6 +9,23 @@ public class Cafe extends Building{
     private int nSugarPackets; // The number of sugar packets remaining in inventory
     private int nCreams; // The number of "splashes" of cream remaining in inventory
     private int nCups; // The number of cups remaining in inventory
+
+
+    /* Default constructor */
+    public Cafe() {
+        this("<Name Unknown>", "<Address Unknown>", 1);
+    }
+
+    /* Overloaded constructor with address only */
+    public Cafe(String address) {
+        this(); // Call default constructor
+        this.address = address; // Override address
+    }
+
+    /* Overloaded constructor with name, address */
+    public Cafe(String name, String address) {
+        this(name, address, 1); // Call full constructor with hard-coded # floors
+    }
 
     /**
      * Constructor for the Cafe Class
@@ -22,6 +42,14 @@ public class Cafe extends Building{
         nCups = 30;
     }
     
+    public void goToFloor(int floorNum) {
+        if ((this.activeFloor - floorNum) < 2 && (this.activeFloor - floorNum) > -2){
+            this.activeFloor = floorNum;
+        }else{
+            System.out.println("You can't skip floors without an elevator. Travel one floor at a time.");
+        }
+    }
+
     /**
      * Updates the inventory after selling coffee
      * @param size size in oz of coffee sold
@@ -29,10 +57,15 @@ public class Cafe extends Building{
      * @param usedCreams nubmer of creams used
      */
     public void sellCoffee(int size, int usedSugarPackets, int usedCreams){
-        nCoffeeOunces -= size;
-        nSugarPackets -= usedSugarPackets;
-        nCreams -= usedCreams;
-        nCups -= 1;
+        if ((nCoffeeOunces >= size) && (nSugarPackets >= usedSugarPackets) && (nCreams >= usedCreams) && (nCups > 0)){
+            nCoffeeOunces -= size;
+            nSugarPackets -= usedSugarPackets;
+            nCreams -= usedCreams;
+            nCups -= 1;
+        }else{
+            System.out.println("We are out, sorry.");
+        }
+        
     }
 
     /**
@@ -53,19 +86,24 @@ public class Cafe extends Building{
      * Shows current inventory
      * @return string giving current inventory of coffee oz, sugar packets, creams, cups
      */
-    public String stockcount(){
+    public String stockCount(){
         return "coffee ounces: " + nCoffeeOunces + ", sugar packets: " + nSugarPackets
          + ", cream: " + nCreams + ", cups: " + nCups;
+    }
+
+    public void showOptions() {
+        System.out.println("Available options at " + this.name + ":\n + enter() \n + exit() \n + sellCoffee()");
     }
 
     public static void main(String[] args) {
         Cafe Compass = new Cafe("Compass", "7 College Lane", 2);
 
-        System.out.println(Compass.stockcount());
+        System.out.println(Compass.stockCount());
         Compass.sellCoffee(12, 1, 1);
-        System.out.println(Compass.stockcount());
+        System.out.println(Compass.stockCount());
         Compass.restock(12, 1, 1, 1);
-        System.out.println(Compass.stockcount());
+        System.out.println(Compass.stockCount());
+        Compass.sellCoffee(130, 0, 0);
 
 
 
